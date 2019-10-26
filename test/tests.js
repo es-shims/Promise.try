@@ -16,7 +16,7 @@ module.exports = function (promiseTry, t) {
 		var catchFn = function (x) {
 			return function (e) {
 				st.equal(e instanceof TypeError, true, inspect(x) + ': error is a TypeError');
-				st.equal(/is not a function$/.test(e.message), true, inspect(x) + ': error message is correct');
+				st.equal((/is not a function$/).test(e.message), true, inspect(x) + ': error message is correct');
 			};
 		};
 
