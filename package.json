@@ -23,8 +23,7 @@
 		"test:module": "node test/index.js",
 		"test:promise-shimmed": "node test/promise-shimmed.js",
 		"coverage": "covert test/*.js",
-		"coverage-quiet": "covert test/*.js --quiet",
-		"lint": "eslint test/*.js *.js"
+		"lint": "eslint ."
 	},
 	"repository": {
 		"type": "git",
