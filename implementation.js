@@ -1,6 +1,6 @@
 'use strict';
 
-var ES = require('es-abstract/es7');
+var ES = require('es-abstract/es2019');
 
 var promiseTry = function try_(callbackfn) {
 	/* eslint no-invalid-this: 0 */
