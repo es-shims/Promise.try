@@ -3,15 +3,9 @@
 
 	"extends": "@ljharb",
 
-	"globals": {
-		"Promise": false
-	},
-
 	"rules": {
 		"func-name-matching": 1,
-		"dot-notation": [2, { "allowKeywords": false }],
 		"new-cap": [2, { "capIsNewExceptions": ["IsConstructor", "Type"] }],
-		"no-magic-numbers": 0,
 	},
 
 	"overrides": [
