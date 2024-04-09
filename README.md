@@ -1,27 +1,24 @@
 # promise.try <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
-[![Build Status][travis-svg]][travis-url]
-[![dependency status][deps-svg]][deps-url]
-[![dev dependency status][dev-deps-svg]][dev-deps-url]
+[![github actions][actions-image]][actions-url]
+[![coverage][codecov-image]][codecov-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
 [![npm badge][npm-badge-png]][package-url]
 
-[![browser support][testling-svg]][testling-url]
-
 ES Proposal spec-compliant shim for `Promise.try`. Invoke its "shim" method to shim `Promise.try` if it is unavailable or noncompliant. **Note**: a global `Promise` must already exist: the [es6-shim](https://github.com/es-shims/es6-shim) is recommended.
 
-This package implements the [es-shim API](https://github.com/es-shims/api) interface. It works in an ES3-supported environment that has `Promise` available globally, and complies with the [proposed spec](https://github.com/ljharb/proposal-promise-try).
+This package implements the [es-shim API](https://github.com/es-shims/api) interface. It works in an ES3-supported environment that has `Promise` available globally, and complies with the [proposed spec](https://tc39.es/proposal-promise-try/).
 
 Most common usage:
 ```js
 var assert = require('assert');
 var promiseTry = require('promise.try');
 
-promiseTry(function () {
-	throw 42;
-}).catch(function (e) {
+promiseTry(function (e) {
+	throw e;
+}, 42).catch(function (e) {
 	assert.equal(e, 42);
 });
 
@@ -51,8 +48,6 @@ Simply clone the repo, `npm install`, and run `npm test`
 
 [package-url]: https://npmjs.com/package/promise.try
 [npm-version-svg]: http://versionbadg.es/es-shims/Promise.try.svg
-[travis-svg]: https://travis-ci.org/es-shims/Promise.try.svg
-[travis-url]: https://travis-ci.org/es-shims/Promise.try
 [deps-svg]: https://david-dm.org/es-shims/Promise.try.svg
 [deps-url]: https://david-dm.org/es-shims/Promise.try
 [dev-deps-svg]: https://david-dm.org/es-shims/Promise.try/dev-status.svg
@@ -64,3 +59,7 @@ Simply clone the repo, `npm install`, and run `npm test`
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/promise.try.svg
 [downloads-url]: http://npm-stat.com/charts.html?package=promise.try
+[codecov-image]: https://codecov.io/gh/es-shims/Promise.try/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/es-shims/Promise.try/
+[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/es-shims/Promise.try
+[actions-url]: https://github.com/es-shims/Promise.try/actions

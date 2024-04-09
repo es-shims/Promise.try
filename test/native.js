@@ -1,7 +1,5 @@
 'use strict';
 
-require('../auto');
-
 var test = require('tape');
 
 var runTests = require('./builtin');

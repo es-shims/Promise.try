@@ -1,25 +1,34 @@
 'use strict';
 
-var ES = require('es-abstract/es2019');
+var Call = require('es-abstract/2024/Call');
+var NewPromiseCapability = require('es-abstract/2024/NewPromiseCapability');
+var Type = require('es-abstract/2024/Type');
 
-var promiseTry = function try_(callbackfn) {
+var setFunctionName = require('set-function-name');
+var $TypeError = require('es-errors/type');
+var callBound = require('call-bind/callBound');
+
+var $slice = callBound('Array.prototype.slice');
+
+module.exports = setFunctionName(function try_(callbackfn) {
 	/* eslint no-invalid-this: 0 */
 
 	var C = this;
-	if (ES.Type(C) !== 'Object') {
-		throw new TypeError('receiver must be an object');
+	if (Type(C) !== 'Object') {
+		throw new $TypeError('receiver must be an object'); // step 2
 	}
 
-	if (!ES.IsConstructor(C)) {
-		throw new TypeError('receiver must be a constructor');
+	var promiseCapability = NewPromiseCapability(C); // step 3
+
+	var args = arguments.length > 1 ? $slice(arguments, 1) : [];
+
+	try {
+		var status = Call(callbackfn, undefined, args); // step 4
+
+		Call(promiseCapability['[[Resolve]]'], undefined, [status]); // step 6.a
+	} catch (e) {
+		Call(promiseCapability['[[Reject]]'], undefined, [e]); // step 5.a
 	}
 
-	return new C(function (resolve) {
-		resolve(callbackfn());
-	});
-};
-if (Object.getOwnPropertyDescriptor && Object.getOwnPropertyDescriptor(promiseTry, 'name').configurable) {
-	Object.defineProperty(promiseTry, 'name', { configurable: true, value: 'try' });
-}
-
-module.exports = promiseTry;
+	return promiseCapability['[[Promise]]'];
+}, 'try', true);

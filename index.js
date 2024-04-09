@@ -1,6 +1,6 @@
 'use strict';
 
-var bind = require('function-bind');
+var callBind = require('call-bind');
 var define = require('define-properties');
 
 var implementation = require('./implementation');
@@ -9,12 +9,12 @@ var shim = require('./shim');
 
 var requirePromise = require('./requirePromise');
 
-var bound = bind.call(Function.call, getPolyfill());
+var bound = callBind.apply(getPolyfill());
 
-var promiseTry = function promiseTry(fn) {
+var promiseTry = function promiseTry(fn) { // eslint-disable-line no-unused-vars
 	requirePromise();
 
-	return bound(this || Promise, fn); // eslint-disable-line no-invalid-this
+	return bound(typeof this === 'undefined' ? Promise : this, arguments); // eslint-disable-line no-invalid-this
 };
 
 define(promiseTry, {

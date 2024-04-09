@@ -1,6 +1,5 @@
 'use strict';
 
-// var define = require('define-properties');
 var forEach = require('for-each');
 var inspect = require('object-inspect');
 
@@ -16,7 +15,7 @@ module.exports = function (promiseTry, t) {
 		var catchFn = function (x) {
 			return function (e) {
 				st.equal(e instanceof TypeError, true, inspect(x) + ': error is a TypeError');
-				st.equal((/is not a function$/).test(e.message), true, inspect(x) + ': error message is correct');
+				st.match(e.message, / not a function$/, inspect(x) + ': error message is correct');
 			};
 		};
 
@@ -35,6 +34,30 @@ module.exports = function (promiseTry, t) {
 		promiseTry(function () { return Promise.resolve(42); }).then(function (x) {
 			st.equal(x, 42, 'tried return of promise for value is value');
 		}, st.fail);
+	});
+
+	t.test('args forwarding', function (st) {
+		st.plan(2);
+
+		var s1 = { one: true };
+		var s2 = { two: true };
+
+		promiseTry(
+			function () {
+				st.deepEqual(Array.prototype.slice.call(arguments), [s1]);
+			},
+			s1
+		);
+
+		promiseTry(
+			function () {
+				st.deepEqual(Array.prototype.slice.call(arguments), [s1, s2]);
+			},
+			s1,
+			s2
+		);
+
+		st.end();
 	});
 
 	t.test('rejection', function (st) {
@@ -84,7 +107,7 @@ module.exports = function (promiseTry, t) {
 			s2t.ok(promise instanceof Subclass, 'promise is instanceof Subclass');
 			s2t.equal(promise.constructor, Subclass, 'promise.constructor is Subclass');
 
-			s2t.end();
+			return promise.then(s2t.fail, s2t.ok);
 		});
 
 		st.test('preserves correct subclass when someone returns a thenable', function (s2t) {
@@ -94,7 +117,7 @@ module.exports = function (promiseTry, t) {
 			s2t.ok(promise instanceof Subclass, 'promise is instanceof Subclass');
 			s2t.equal(promise.constructor, Subclass, 'promise.constructor is Subclass');
 
-			s2t.end();
+			return promise;
 		});
 	});
 
