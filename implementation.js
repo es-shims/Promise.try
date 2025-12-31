@@ -1,8 +1,9 @@
 'use strict';
 
-var Call = require('es-abstract/2024/Call');
-var NewPromiseCapability = require('es-abstract/2024/NewPromiseCapability');
-var Type = require('es-abstract/2024/Type');
+var Call = require('es-abstract/2025/Call');
+var NewPromiseCapability = require('es-abstract/2025/NewPromiseCapability');
+
+var isObject = require('es-abstract/helpers/isObject');
 
 var setFunctionName = require('set-function-name');
 var $TypeError = require('es-errors/type');
@@ -14,7 +15,7 @@ module.exports = setFunctionName(function try_(callbackfn) {
 	/* eslint no-invalid-this: 0 */
 
 	var C = this;
-	if (Type(C) !== 'Object') {
+	if (!isObject(C)) {
 		throw new $TypeError('receiver must be an object'); // step 2
 	}
 
