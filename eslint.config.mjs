@@ -6,8 +6,7 @@ export default [
 		rules: {
 			'func-name-matching': 'warn',
 			'new-cap': [
-				'error',
-				{
+				'error', {
 					capIsNewExceptions: [
 						'Call',
 						'NewPromiseCapability',
