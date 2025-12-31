@@ -14,7 +14,7 @@ var bound = callBind.apply(getPolyfill());
 var promiseTry = function promiseTry(fn) { // eslint-disable-line no-unused-vars
 	requirePromise();
 
-	return bound(typeof this === 'undefined' ? Promise : this, arguments); // eslint-disable-line no-invalid-this
+	return bound(typeof this === 'undefined' ? Promise : this, arguments);
 };
 
 define(promiseTry, {
