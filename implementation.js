@@ -24,11 +24,11 @@ module.exports = setFunctionName(function try_(callbackfn) {
 	var args = arguments.length > 1 ? $slice(arguments, 1) : [];
 
 	try {
-		var status = Call(callbackfn, undefined, args); // step 4
+		var status = Call(callbackfn, void undefined, args); // step 4
 
-		Call(promiseCapability['[[Resolve]]'], undefined, [status]); // step 6.a
+		Call(promiseCapability['[[Resolve]]'], void undefined, [status]); // step 6.a
 	} catch (e) {
-		Call(promiseCapability['[[Reject]]'], undefined, [e]); // step 5.a
+		Call(promiseCapability['[[Reject]]'], void undefined, [e]); // step 5.a
 	}
 
 	return promiseCapability['[[Promise]]'];
