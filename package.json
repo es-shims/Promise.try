@@ -89,7 +89,11 @@
 	},
 	"publishConfig": {
 		"ignore": [
-			".github/workflows"
+			".editorconfig",
+			".github/workflows",
+			".nycrc",
+			"eslint.config.mjs",
+			"test"
 		]
 	}
 }
