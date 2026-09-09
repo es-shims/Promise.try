@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.2](https://github.com/es-shims/Promise.try/compare/v2.0.1...v2.0.2) - 2026-09-08
+
+### Commits
+
+- [actions] update workflows [`b9bd41e`](https://github.com/es-shims/Promise.try/commit/b9bd41e9ee6876a35f87212c1ac1075abc0f00da)
+- [Fix] do not wrap a promise returned from the callback [`7e784fc`](https://github.com/es-shims/Promise.try/commit/7e784fcb5cd34a1be06b4b692231267514cef20d)
+- [Refactor] use fn decls [`56aeda7`](https://github.com/es-shims/Promise.try/commit/56aeda740d0a6b224cfb5cf4b2c8a53ea14e35f0)
+- [Dev Deps] update `@ljharb/eslint-config`, `auto-changelog`, `eslint`, `evalmd`, `tape` [`e3fd2fe`](https://github.com/es-shims/Promise.try/commit/e3fd2fe478fb0f1ed03b868431db9ce01c2e9afe)
+- [Robustness] use `void` and `es-errors` [`8b7f1e5`](https://github.com/es-shims/Promise.try/commit/8b7f1e5fa0c34536828b5bfece5706c7def85e5a)
+- [meta] remove a few files from the artifact [`066167c`](https://github.com/es-shims/Promise.try/commit/066167c798e557544c59884db10fa58a4119ee90)
+- [Dev Deps] update `@ljharb/eslint-config`, `auto-changelog` [`8925068`](https://github.com/es-shims/Promise.try/commit/89250684d6821a3f183315986907e72502f4b579)
+- [Deps] update `call-bind` [`620ea81`](https://github.com/es-shims/Promise.try/commit/620ea813d45b25a5ac8b9299af8495a376661ee4)
+- [Deps] update `es-abstract` [`d3f2925`](https://github.com/es-shims/Promise.try/commit/d3f29252d3437df9f66801251a3ddd3684ad7210)
+- [Dev Deps] update `eslint` [`720cf3c`](https://github.com/es-shims/Promise.try/commit/720cf3c9b593a972d711c0cf39d5a30df45dc16d)
+
 ## [v2.0.1](https://github.com/es-shims/Promise.try/compare/v2.0.0...v2.0.1) - 2026-01-02
 
 ### Commits
