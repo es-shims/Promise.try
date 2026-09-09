@@ -8,7 +8,7 @@ var runTests = require('./tests');
 
 var bound = callBind.apply(implementation);
 
-var rebindable = function try_(callbackfn) { // eslint-disable-line no-unused-vars
+var rebindable = function try_(callbackfn) { // eslint-disable-line no-unused-vars, func-style
 	return bound(typeof this === 'undefined' ? Promise : this, arguments);
 };
 

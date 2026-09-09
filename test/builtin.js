@@ -30,7 +30,7 @@ module.exports = function (t) {
 	});
 
 	var bound = callBind.apply(Promise['try']);
-	var rebindable = function try_(callbackfn) { // eslint-disable-line no-unused-vars
+	var rebindable = function try_(callbackfn) { // eslint-disable-line no-unused-vars, func-style
 		return bound(typeof this === 'undefined' ? Promise : this, arguments);
 	};
 

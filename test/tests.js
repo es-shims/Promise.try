@@ -12,12 +12,12 @@ module.exports = function (promiseTry, t) {
 		var cases = [undefined, true, false, [], {}];
 		st.plan(2 * cases.length);
 
-		var catchFn = function (x) {
-			return function (e) {
+		function catchFn(x) {
+			return function handler(e) {
 				st.equal(e instanceof TypeError, true, inspect(x) + ': error is a TypeError');
 				st.match(e.message, / not a function$/, inspect(x) + ': error message is correct');
 			};
-		};
+		}
 
 		forEach(cases, function (x) {
 			promiseTry(x).then(st.fail, catchFn(x));

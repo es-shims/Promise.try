@@ -5,6 +5,7 @@ export default [
 	{
 		rules: {
 			'func-name-matching': 'warn',
+			'func-style': ['error', 'declaration'],
 			'new-cap': [
 				'error', {
 					capIsNewExceptions: [
