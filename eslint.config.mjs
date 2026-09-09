@@ -11,6 +11,7 @@ export default [
 					capIsNewExceptions: [
 						'Call',
 						'NewPromiseCapability',
+						'PromiseResolve',
 						'Type',
 					],
 				},

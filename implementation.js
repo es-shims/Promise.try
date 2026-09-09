@@ -2,6 +2,7 @@
 
 var Call = require('es-abstract/2025/Call');
 var NewPromiseCapability = require('es-abstract/2025/NewPromiseCapability');
+var PromiseResolve = require('es-abstract/2025/PromiseResolve');
 
 var isObject = require('es-abstract/helpers/isObject');
 
@@ -19,17 +20,18 @@ module.exports = setFunctionName(function try_(callbackfn) {
 		throw new $TypeError('receiver must be an object'); // step 2
 	}
 
-	var promiseCapability = NewPromiseCapability(C); // step 3
-
 	var args = arguments.length > 1 ? $slice(arguments, 1) : [];
 
+	var status;
 	try {
-		var status = Call(callbackfn, void undefined, args); // step 4
+		status = Call(callbackfn, void undefined, args); // step 3
+	} catch (e) { // step 4
+		var promiseCapability = NewPromiseCapability(C); // step 4.a
 
-		Call(promiseCapability['[[Resolve]]'], void undefined, [status]); // step 6.a
-	} catch (e) {
-		Call(promiseCapability['[[Reject]]'], void undefined, [e]); // step 5.a
+		Call(promiseCapability['[[Reject]]'], void undefined, [e]); // step 4.b
+
+		return promiseCapability['[[Promise]]']; // step 4.c
 	}
 
-	return promiseCapability['[[Promise]]'];
+	return PromiseResolve(C, status); // step 5.a
 }, 'try', true);

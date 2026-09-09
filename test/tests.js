@@ -119,6 +119,31 @@ module.exports = function (promiseTry, t) {
 
 			return promise;
 		});
+
+		st.test('does not wrap a returned promise of the subclass', function (s2t) {
+			var sentinel = Subclass.resolve();
+			s2t.ok(sentinel instanceof Subclass, 'sentinel is instanceof Subclass');
+
+			s2t.equal(
+				promiseTry.call(Subclass, function () { return sentinel; }),
+				sentinel,
+				'the returned subclass promise is passed through, not wrapped'
+			);
+
+			s2t.end();
+		});
+	});
+
+	t.test('does not wrap a returned promise', function (st) {
+		var sentinel = Promise.resolve();
+
+		st.equal(
+			promiseTry.call(Promise, function () { return sentinel; }),
+			sentinel,
+			'the returned promise is passed through, not wrapped'
+		);
+
+		st.end();
 	});
 
 	return t.comment('tests completed');
